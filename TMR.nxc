@@ -1,0 +1,79 @@
+inline int brujula(int compas,int compasactual)
+{
+int b;
+b=compasactual-compas;
+if(b<0)
+{
+b+=360;
+}
+return b;  //Para que siempre de 0 si da hacia un lado 20 hace cuenta hacia derecha avanza nume para izq decenderia numero y poreso se pone b mas 360 para que de postivo y que b siemrpe de 0
+}
+task main()
+{
+SetSensorLowspeed(S3);
+SetSensorLowspeed(S2);
+int cinicio,cactual,ba;
+int dir,s1,s2,s3,s4,s5;
+
+while(true)
+{
+ReadSensorHTIRSeeker2AC(IN_2,dir,s1,s2,s3,s4,s5);
+cactual=SensorHTCompass(S3);
+ TextOut(10,LCD_LINE3,"Dir: ");
+ NumOut(50,LCD_LINE3,dir);
+ba=brujula(cinicio,cactual);
+NumOut(0,LCD_LINE1,ba);
+Wait(25);
+TextOut(0,LCD_LINE1,"  ");
+
+if(dir==1){
+OnFwd(OUT_A,90);
+OnRev(OUT_C,90);
+Off(OUT_B);
+}
+if(dir==2){
+OnFwd(OUT_A,90);
+OnRev(OUT_C,90);
+Off(OUT_B);
+
+}
+if(dir==3){
+OnFwd(OUT_B,90);
+OnRev(OUT_C,90);
+Off(OUT_A);
+}
+if(dir==4){
+OnFwd(OUT_B,90);
+OnRev(OUT_C,90);
+Off(OUT_A);
+
+}
+if(dir==5){
+OnFwd(OUT_B,90);
+OnRev(OUT_A,90);
+Off(OUT_C);
+
+}
+if(dir==6){
+OnFwd(OUT_C,90);
+OnRev(OUT_A,90);
+Off(OUT_B);}
+}
+if(dir==7){
+OnFwd(OUT_C,90);
+OnRev(OUT_A,90);
+Off(OUT_B);
+}
+if(dir==8){
+OnFwd(OUT_C,90);
+OnRev(OUT_B,90);
+Off(OUT_A);
+
+}
+if(dir==9){
+OnFwd(OUT_C,90);
+OnRev(OUT_B,90);
+Off(OUT_A);
+}
+}
+}
