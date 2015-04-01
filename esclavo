@@ -1,0 +1,27 @@
+#include "NXCDefs.h"
+#define INBOX 5
+#define OUTBOX 1
+
+   sub BTCheck(int conn)
+   {
+        if (!BluetoothStatus(conn)==NO_ERR){
+        TextOut(5,LCD_LINE2,"Y mi maestro ?");
+        Wait(1000);
+        Stop(true);
+        }
+   }
+
+task main()
+{
+  int resiv;
+    while(true)
+    {
+        if(ReceiveRemoteNumber(INBOX,true,resiv) != STAT_MSG_EMPTY_MAILBOX)
+        {
+             NumOut(50,LCD_LINE3,resiv);
+             Wait(50);
+             ClearScreen();
+
+            }
+            }
+            }
