@@ -1,0 +1,50 @@
+#include "NXCDefs.h"
+#define ENTRADA 1
+#define SALIDA  5
+
+   sub no_conexion (int nel){
+    if (!BluetoothStatus(nel)==NO_ERR){
+    TextOut(5,LCD_LINE2,"Donde quedo mi esclavo?");
+    Wait(2000);
+    Stop(true);
+    }
+    }
+task main(){
+int dir,s1,s2,s3,s4,s5;
+SetSensorLowspeed(S2);
+while(true){
+ReadSensorHTIRSeeker2AC(IN_2,dir,s1,s2,s3,s4,s5);
+Wait(50);
+
+
+ TextOut(10,LCD_LINE3,"Dir: ");
+ NumOut(50,LCD_LINE3,dir);
+ if(dir==1){
+SendRemoteNumber(1,5,1);
+}
+ if(dir==2){
+SendRemoteNumber(1,5,2);
+}
+ if(dir==3){
+SendRemoteNumber(1,5,3);
+}
+ if(dir==4){
+SendRemoteNumber(1,5,4);
+}
+ if(dir==5){
+SendRemoteNumber(1,5,5);
+}
+ if(dir==6){
+SendRemoteNumber(1,5,6);
+}
+ if(dir==7){
+SendRemoteNumber(1,5,7);
+}
+ if(dir==8){
+SendRemoteNumber(1,5,8);
+}
+ if(dir==9){
+SendRemoteNumber(1,5,9);
+}
+}
+}
