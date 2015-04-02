@@ -1,0 +1,60 @@
+#include "NXCDefs.h"
+#define INBOX 5
+#define OUTBOX 1
+
+   sub BTCheck(int conn)
+   {
+        if (!BluetoothStatus(conn)==NO_ERR){
+        TextOut(5,LCD_LINE2,"Y mi maestro ?");
+        Wait(1000);
+        Stop(true);
+        }
+   }
+
+task main()
+{
+  int resiv;
+    while(true)
+    {
+        if(ReceiveRemoteNumber(INBOX,true,resiv) != STAT_MSG_EMPTY_MAILBOX)
+        {
+        NumOut(50,LCD_LINE3,resiv);
+        Wait(50);
+        ClearScreen();
+        if(resiv==1){
+        OnFwd(OUT_A,90);
+        OnFwd(OUT_B,80);
+        }
+        if(resiv==2){
+        OnFwd(OUT_A,90);
+        OnFwd(OUT_B,65);
+        }
+         if(resiv==3){
+        OnFwd(OUT_A,90);
+        OnFwd(OUT_B,50);
+        }
+         if(resiv==4){
+        OnFwd(OUT_A,90);
+        OnFwd(OUT_B,40);
+        }  if(resiv==5){
+        OnFwd(OUT_AB,90);
+        }
+        if(resiv==6){
+        OnFwd(OUT_B,90);
+        OnFwd(OUT_A,40);
+        }
+        if(resiv==7){
+        OnFwd(OUT_B,90);
+        OnFwd(OUT_A,50);
+        }
+         if(resiv==8){
+        OnFwd(OUT_B,90);
+        OnFwd(OUT_A,65);
+        }
+         if(resiv==9){
+        OnFwd(OUT_B,90);
+        OnFwd(OUT_A,80);
+        }
+}
+}
+}
