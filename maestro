@@ -1,0 +1,133 @@
+
+#define BT_CONN 1
+#define OUTBOX 5
+#define INBOX 1
+#define CLEARLINE(L)  \
+  TextOut(0,L,"                   ");
+inline int brujula(int compas,int compasactual)
+{
+int b;
+b=compasactual-compas;
+if(b<0)
+{
+b+=360;
+}
+return b;
+}
+sub BTCheck(int conn){
+if(!BluetoothStatus(conn)==NO_ERR){
+TextOut(5,LCD_LINE2,"Error");
+Wait(1000);
+Stop(true);
+   }
+}
+task main(){
+int dir,s1,s2,s3,s4,s5;
+int mensaje;
+int resiv;
+int cinicio,cactual,ba;
+int der,izq;
+while(true)
+{
+BTCheck(1);
+cactual=SensorHTCompass(S3);
+ReadSensorHTIRSeeker2AC(IN_2,dir,s1,s2,s3,s4,s5);
+SendRemoteNumber(BT_CONN,OUTBOX,mensaje);
+ba=brujula(cinicio,cactual);
+if (ReceiveRemoteNumber(INBOX,true,resiv)){
+           if(dir==1){
+           mensaje=s1;
+           }
+           if(dir==2){
+           mensaje=s1+s2/2;
+           }
+           if(dir==2){
+           mensaje=s2;
+           }
+           if(dir==4){
+           mensaje=s3+s2/2;
+           }
+           if(dir==5){
+           mensaje=s3;
+           }
+           if(dir==6){
+           mensaje=s3+s4/2;
+           }
+           if(dir==7){
+           mensaje=s4;
+           }
+           if(dir==8){
+           mensaje=s5+s4/2;
+           }
+           if(dir==9){
+           mensaje=s5;
+           }
+           if(resiv<mensaje){
+                      switch(dir){
+                      case 1:
+                           OnFwd(OUT_AC,90);
+                           Off(OUT_B);
+                           izq=2;
+                           der=2;
+                           break;
+                           case 2:
+                           OnFwd(OUT_AC,90);
+                           Off(OUT_B);
+                           izq=2;
+                           der=2;
+                           break;
+                      case 3:
+                           OnRev(OUT_AB,90);
+                           Off(OUT_C);
+                           izq=1;                    //casos dir
+                           der=0;
+                           break;
+                      case 4:
+                           OnRev(OUT_AB,90);
+                           Off(OUT_C);
+                           izq=1;
+                           der=0;
+                           break;
+                      case 5:
+                           OnRev(OUT_AC,100);
+                           Off(OUT_B);
+                           izq=1;
+                           der=1;
+                           break;
+                      case 6:
+                           OnRev(OUT_C,90);
+                           OnFwd(OUT_B,90);
+                           Off(OUT_A);
+                           izq=0;
+                           der=1;
+                           break;
+                      case 7:
+                           OnRev(OUT_C,90);
+                           OnFwd(OUT_B,90);
+                           Off(OUT_A);
+                           izq=0;
+                           der=1;
+                           break;
+                       case 8:
+                            OnFwd(OUT_AC,90);
+                            Off(OUT_B);
+                            izq=2;
+                            der=2;
+                            break;
+                        case 9:
+                             OnFwd(OUT_AC,90);
+                             Off(OUT_B);
+                             izq=2;
+                             der=2;
+                             break;
+                        case 0:
+                             OnFwd(OUT_AB,90);
+                             Off(OUT_C);
+                             izq=0;
+                             der=0;
+                        }
+
+}
+}
+}
+}
