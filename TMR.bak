@@ -25,52 +25,55 @@ ba=brujula(cinicio,cactual);
 NumOut(0,LCD_LINE1,ba);
 Wait(25);
 TextOut(0,LCD_LINE1,"  ");
-switch(dir){
-case 1:
+
+if(dir==1){
 OnFwd(OUT_A,90);
 OnRev(OUT_C,90);
 Off(OUT_B);
-break;
-case 2:
+}
+if(dir==2){
 OnFwd(OUT_A,90);
 OnRev(OUT_C,90);
 Off(OUT_B);
-break;
-case 3:
+
+}
+if(dir==3){
 OnFwd(OUT_B,90);
 OnRev(OUT_C,90);
 Off(OUT_A);
-break;
-case 4:
+}
+if(dir==4){
 OnFwd(OUT_B,90);
 OnRev(OUT_C,90);
 Off(OUT_A);
-break;
-case 5:
+
+}
+if(dir==5){
 OnFwd(OUT_B,90);
 OnRev(OUT_A,90);
 Off(OUT_C);
-break;
-case 6:
+
+}
+if(dir==6){
+OnFwd(OUT_C,90);
+OnRev(OUT_A,90);
+Off(OUT_B);}
+}
+if(dir==7){
 OnFwd(OUT_C,90);
 OnRev(OUT_A,90);
 Off(OUT_B);
-break;
-case 7:
-OnFwd(OUT_C,90);
-OnRev(OUT_A,90);
-Off(OUT_B);
-break;
-case 8:
+}
+if(dir==8){
 OnFwd(OUT_C,90);
 OnRev(OUT_B,90);
 Off(OUT_A);
-break;
-case 9:
+
+}
+if(dir==9){
 OnFwd(OUT_C,90);
 OnRev(OUT_B,90);
 Off(OUT_A);
-break;
 }
 }
 }
